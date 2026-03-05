@@ -1,0 +1,27 @@
+@page
+@model ExampleModel
+
+@{
+  var message = "hello from razor pages";
+}
+
+<h1>Example Page</h1>
+
+<p>@message</p>
+
+<p>Hello, @Model.Name</p>
+<p>Today is @ViewBag.Date</p>
+
+<form method="post">
+  <label asp-for="Name">name:</label>
+  <input type="text" asp-for="Name">
+  <input type="submit" value="save" />
+</form>
+
+@{
+  List<string> words = ["here", "is", "list", "of", "words"];
+}
+
+@foreach(var word in words){
+  <span>@word</span>
+}
