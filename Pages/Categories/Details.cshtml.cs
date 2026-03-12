@@ -28,7 +28,10 @@ namespace blogsite.Pages.Categories
                 return NotFound();
             }
 
-            var category = await _context.Categories.FirstOrDefaultAsync(m => m.Id == id);
+            var category = await _context.Categories
+            .Include(c => c.Posts)
+                .ThenInclude(p => p.Author)
+            .FirstOrDefaultAsync(m => m.Id == id);
 
             if (category is not null)
             {
