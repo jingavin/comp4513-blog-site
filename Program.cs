@@ -10,6 +10,16 @@ builder.Services.AddDbContext<BlogContext>(options => options.UseInMemoryDatabas
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        var context = services.GetRequiredService<BlogContext>();
+        DbInitializer.Initialize(context);
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

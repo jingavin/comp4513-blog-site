@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using blogsite.Data;
 using blogsite.Models;
 
-namespace blogsite.Pages.Posts
+namespace blogsite.Pages.Categories
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace blogsite.Pages.Posts
         }
 
         [BindProperty]
-        public Post Post { get; set; } = default!;
+        public Category Category { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace blogsite.Pages.Posts
                 return Page();
             }
 
-            _context.Posts.Add(Post);
+            _context.Categories.Add(Category);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
