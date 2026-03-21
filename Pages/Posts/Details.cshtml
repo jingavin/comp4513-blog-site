@@ -13,6 +13,21 @@
     </div>
     <div class="col-md-4">
         <h3>Related posts</h3>
+        <ul>
+            @if (Model.RelatedPosts.Any())
+            {
+                @foreach (var relatedPost in Model.RelatedPosts)
+                {
+                    <li>
+                        <a asp-page="/Posts/Details" asp-route-id="@relatedPost.Id">@relatedPost.Title</a>
+                    </li>
+                }
+            }
+            else
+            {
+                <p class="text-muted">No related posts in this category.</p>
+            }
+        </ul>
     </div>
 </div>
 
